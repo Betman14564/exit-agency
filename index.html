@@ -1,0 +1,701 @@
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exit | Intelligence Agency</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+        
+        .container {
+            background: rgba(20, 20, 20, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 50px;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            border: 1px solid #333;
+            position: relative;
+            text-align: center;
+        }
+        
+        .text-section {
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+        }
+        
+        .exit-title {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .exit-title .red-e {
+            color: #ff0000;
+            text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000;
+            animation: flicker-red 3s infinite alternate;
+        }
+        
+        .exit-title .other-letters {
+            color: #ffffff;
+            text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #ffffff;
+            animation: flicker-white 3s infinite alternate;
+        }
+        
+        @keyframes flicker-red {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 58%, 60%, 62%, 64%, 66%, 68%, 70%, 72%, 74%, 76%, 78%, 80%, 82%, 84%, 86%, 88%, 90%, 92%, 94%, 96%, 98%, 100% {
+                opacity: 1;
+                text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000;
+            }
+            20%, 24%, 55%, 59%, 81%, 85%, 89%, 93%, 97% {
+                opacity: 0.8;
+                text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 15px #ff0000;
+            }
+        }
+        
+        @keyframes flicker-white {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 58%, 60%, 62%, 64%, 66%, 68%, 70%, 72%, 74%, 76%, 78%, 80%, 82%, 84%, 86%, 88%, 90%, 92%, 94%, 96%, 98%, 100% {
+                opacity: 1;
+                text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #ffffff, 0 0 40px #ffffff;
+            }
+            20%, 24%, 55%, 59%, 81%, 85%, 89%, 93%, 97% {
+                opacity: 0.8;
+                text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 15px #ffffff;
+            }
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #764ba2, transparent);
+        }
+        
+        .slogan {
+            font-size: 1.1rem;
+            color: #aaa;
+            font-style: italic;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            line-height: 1.4;
+        }
+        
+        .options-section {
+            width: 100%;
+        }
+        
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .option-link {
+            padding: 16px 20px;
+            background: rgba(30, 30, 30, 0.8);
+            border: 1px solid #444;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            color: #ccc;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .option-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(118, 75, 162, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .option-link:hover {
+            background: rgba(40, 40, 40, 0.9);
+            border-color: #764ba2;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .option-link:hover::before {
+            left: 100%;
+        }
+        
+        .option-link:active {
+            transform: translateY(0);
+        }
+        
+        .agency-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 0.7rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        
+        /* Page styles */
+        .page {
+            display: none;
+            background: rgba(20, 20, 20, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 50px;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border: 1px solid #333;
+            position: relative;
+            text-align: center;
+        }
+        
+        .back-button {
+            padding: 12px 24px;
+            background: rgba(118, 75, 162, 0.2);
+            border: 1px solid #764ba2;
+            border-radius: 8px;
+            color: #764ba2;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 30px;
+            font-weight: 500;
+        }
+        
+        .back-button:hover {
+            background: rgba(118, 75, 162, 0.3);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .page-content {
+            margin-top: 40px;
+            color: #aaa;
+            line-height: 1.8;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: justify;
+        }
+        
+        .page-content p {
+            margin-bottom: 20px;
+            text-align: justify;
+            font-size: 1.05rem;
+            letter-spacing: 0.3px;
+        }
+        
+        .highlight {
+            color: #764ba2;
+            font-weight: 600;
+        }
+        
+        .emoji {
+            font-size: 1.2em;
+            vertical-align: middle;
+        }
+        
+        .restricted-message {
+            color: #ff6b6b;
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-top: 30px;
+        }
+        
+        .early-message {
+            color: #ffd93d;
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-top: 30px;
+        }
+        
+        .warning {
+            color: #ff6b6b;
+            font-weight: bold;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 107, 107, 0.1);
+            border-left: 3px solid #ff6b6b;
+            border-radius: 5px;
+            text-align: justify;
+        }
+        
+        .instructions {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(118, 75, 162, 0.1);
+            border-left: 3px solid #764ba2;
+            border-radius: 5px;
+            text-align: justify;
+        }
+        
+        .form-link-container {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(30, 30, 30, 0.8);
+            border-radius: 10px;
+            border: 1px solid #444;
+        }
+        
+        .form-link-title {
+            color: #f0f0f0;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .form-link {
+            color: #764ba2;
+            text-decoration: none;
+            word-break: break-all;
+            font-size: 0.95rem;
+            padding: 10px;
+            background: rgba(118, 75, 162, 0.1);
+            border-radius: 5px;
+            display: block;
+            transition: all 0.3s ease;
+        }
+        
+        .form-link:hover {
+            background: rgba(118, 75, 162, 0.2);
+            color: #fff;
+        }
+        
+        .final-note {
+            margin-top: 25px;
+            padding: 15px;
+            background: rgba(76, 175, 80, 0.1);
+            border-left: 3px solid #4CAF50;
+            border-radius: 5px;
+            text-align: justify;
+            font-style: italic;
+        }
+        
+        /* Admin control panel - centered */
+        .admin-auth-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .admin-panel {
+            padding: 25px;
+            background: rgba(30, 30, 30, 0.8);
+            border-radius: 10px;
+            border: 1px solid #444;
+            width: 100%;
+        }
+        
+        .admin-title {
+            color: #f0f0f0;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        
+        .code-input {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(40, 40, 40, 0.9);
+            border: 1px solid #555;
+            border-radius: 8px;
+            color: #e0e0e0;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .admin-button {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 5px;
+        }
+        
+        .admin-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(118, 75, 162, 0.4);
+        }
+        
+        .control-panel {
+            display: none;
+            margin-top: 20px;
+            width: 100%;
+        }
+        
+        .control-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .status-indicator {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .status-active {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+        }
+        
+        .status-inactive {
+            background: rgba(244, 67, 54, 0.2);
+            color: #f44336;
+        }
+        
+        .maintenance-page {
+            display: none;
+            background: rgba(20, 20, 20, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 50px;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            border: 1px solid #333;
+        }
+        
+        .maintenance-title {
+            font-size: 2.5rem;
+            color: #f44336;
+            margin-bottom: 20px;
+        }
+        
+        .maintenance-message {
+            color: #aaa;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            .container, .page, .maintenance-page {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .options-container {
+                max-width: 100%;
+            }
+            
+            .agency-badge {
+                position: static;
+                margin-top: 15px;
+            }
+            
+            .back-button {
+                width: 100%;
+                max-width: 200px;
+                margin: 30px auto 0 auto;
+            }
+            
+            .page-content {
+                text-align: justify;
+                font-size: 1rem;
+            }
+            
+            .form-link-container {
+                padding: 15px;
+            }
+            
+            .admin-panel {
+                padding: 20px;
+            }
+            
+            .control-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .admin-button {
+                width: 100%;
+                max-width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Page -->
+    <div class="container" id="mainPage">
+        <div class="agency-badge">Intelligence Division</div>
+        <div class="text-section">
+            <h1 class="exit-title"><span class="red-e">E</span><span class="other-letters">xit</span></h1>
+            <div class="slogan">С нами выход есть всегда</div>
+        </div>
+        <div class="options-section">
+            <div class="options-container">
+                <div class="option-link" onclick="showPage('aboutPage')">О нашем агентстве</div>
+                <div class="option-link" onclick="showPage('formPage')">Анкета</div>
+                <div class="option-link" onclick="showPage('administrationPage')">Администрация</div>
+                <div class="option-link" onclick="showPage('recruitmentPage')">Принятие в команду</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Page -->
+    <div class="page" id="aboutPage">
+        <div class="text-section">
+            <h1>О нашем агентстве</h1>
+            <div class="page-content">
+                <p>Наше агентство <span class="highlight">«EXIT»</span> предлагает вам, уважаемый пользователь, возможность воспользоваться различными услугами по выгодным ценам. В частности, мы поможем вам получить интересующую вас информацию анонимно — как для других пользователей, так и для администрации.</p>
+                
+                <p>Для этого вам необходимо будет заполнить небольшую анкету, в которой мы попросим вас указать следующие данные:</p>
+                
+                <p>• РП-имя<br>
+                • Никнейм<br>
+                • Информацию, которую вы хотите узнать<br>
+                • Желаемое время получения информации<br>
+                • Комментарий (по желанию) для подробного объяснения вашего запроса</p>
+                
+                <p>Обратите внимание: администрация всегда может отклонить ваш запрос, если сочтёт его не соответствующим политике нашего агентства.</p>
+                
+                <p>За каждую услугу необходимо внести аванс для её регистрации. Однако не волнуйтесь — деньги всегда будут возвращены, если мы не сможем получить интересующую вас информацию <span class="emoji">(¬‿¬)</span></p>
+            </div>
+        </div>
+        <button class="back-button" onclick="showMainPage()">← Назад</button>
+    </div>
+
+    <!-- Form Page -->
+    <div class="page" id="formPage">
+        <div class="text-section">
+            <h1>Анкета</h1>
+            <div class="warning">
+                При заполнении анкеты вы ОБЯЗАНЫ понимать что спам это плохо и за это могут быть СЕРЬЕЗНЫЕ ПОСЛЕДСТВИЯ со стороны администрации агентства.
+            </div>
+            
+            <div class="instructions">
+                Если вы передумали о своем заказе пожалуйста сделайте ещё одну анкету и вставьте везде (1).<br><br>
+                После заполнения анкеты в течении какого-то времени не более 2 дней к вам на телефон придет сообщение от администрации (На игровой телефон который можно купить в магазине электроники на сервере Atlant).
+            </div>
+            
+            <div class="final-note">
+                После получения сообщения от одного из членов администрации просим вас прибыть на место встречи для подтверждения аванса.<br><br>
+                ( Скопируйте ссылку и вставьте в любой браузер после ее заполнения мы начнём процесс. И пожалуйста не делитесь ссылкой с другими. )<br><br>
+                И помните: С нами выход есть всегда
+            </div>
+            
+            <div class="form-link-container">
+                <div class="form-link-title">Ссылка на анкету:</div>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdxrBL2r53MYtA6_vaFtJZwahPeb7TJjQDHvvttEJw1LNO_-A/viewform?usp=header" target="_blank" class="form-link">
+                    https://docs.google.com/forms/d/e/1FAIpQLSdxrBL2r53MYtA6_vaFtJZwahPeb7TJjQDHvvttEJw1LNO_-A/viewform?usp=header
+                </a>
+            </div>
+        </div>
+        <button class="back-button" onclick="showMainPage()">← Назад</button>
+    </div>
+
+    <!-- Administration Page -->
+    <div class="page" id="administrationPage">
+        <div class="text-section">
+            <h1>Администрация</h1>
+            <div class="restricted-message">Доступ запрещен</div>
+            <div class="page-content">
+                <p>У вас недостаточно прав для просмотра данной информации.</p>
+                <p>Этот раздел доступен только авторизованным членам администрации агентства «EXIT».</p>
+            </div>
+        </div>
+        
+        <div class="admin-auth-section">
+            <div class="admin-panel">
+                <div class="admin-title">Авторизация администратора</div>
+                <input type="password" id="authCode" class="code-input" placeholder="Введите код доступа">
+                <button class="admin-button" onclick="authenticateAdmin()">Подтвердить доступ</button>
+                
+                <div class="control-panel" id="controlPanel">
+                    <div style="margin: 20px 0; padding: 15px; background: rgba(118, 75, 162, 0.2); border-radius: 8px; text-align: center;">
+                        <strong>Панель управления сайтом</strong>
+                    </div>
+                    <div class="control-buttons">
+                        <button class="admin-button" onclick="toggleSiteStatus(true)">Включить сайт</button>
+                        <button class="admin-button" onclick="toggleSiteStatus(false)">Отключить сайт</button>
+                    </div>
+                    <div id="statusIndicator" class="status-indicator status-active">
+                        Статус: Сайт активен
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <button class="back-button" onclick="showMainPage()">← Назад</button>
+    </div>
+
+    <!-- Recruitment Page -->
+    <div class="page" id="recruitmentPage">
+        <div class="text-section">
+            <h1>Принятие в команду</h1>
+            <div class="early-message">Пока рано</div>
+            <div class="page-content">
+                <p>Процесс набора новых сотрудников в настоящее время приостановлен.</p>
+                <p>Следите за обновлениями на нашем основном портале. Мы обязательно сообщим, когда начнется новый этап отбора кандидатов.</p>
+            </div>
+        </div>
+        <button class="back-button" onclick="showMainPage()">← Назад</button>
+    </div>
+
+    <!-- Maintenance Page -->
+    <div class="maintenance-page" id="maintenancePage">
+        <div class="maintenance-title">САЙТ ВРЕМЕННО НЕДОСТУПЕН</div>
+        <div class="maintenance-message">
+            Техническое обслуживание正在进行中.<br>
+            Пожалуйста, повторите попытку позже.<br><br>
+            С нами выход есть всегда.
+        </div>
+    </div>
+
+    <script>
+        // Secret admin code
+        const ADMIN_CODE = "11Walu11";
+        let siteActive = true;
+        let isAdminAuthenticated = false;
+        
+        function showMainPage() {
+            if (!siteActive) {
+                showMaintenancePage();
+                return;
+            }
+            
+            // Reset admin authentication when returning to main page
+            isAdminAuthenticated = false;
+            document.getElementById('controlPanel').style.display = 'none';
+            document.getElementById('authCode').value = '';
+            
+            document.getElementById('aboutPage').style.display = 'none';
+            document.getElementById('formPage').style.display = 'none';
+            document.getElementById('administrationPage').style.display = 'none';
+            document.getElementById('recruitmentPage').style.display = 'none';
+            document.getElementById('maintenancePage').style.display = 'none';
+            document.getElementById('mainPage').style.display = 'flex';
+        }
+        
+        function showMaintenancePage() {
+            document.getElementById('aboutPage').style.display = 'none';
+            document.getElementById('formPage').style.display = 'none';
+            document.getElementById('administrationPage').style.display = 'none';
+            document.getElementById('recruitmentPage').style.display = 'none';
+            document.getElementById('mainPage').style.display = 'none';
+            document.getElementById('maintenancePage').style.display = 'block';
+        }
+        
+        function showPage(pageId) {
+            if (!siteActive && pageId !== 'administrationPage') {
+                showMaintenancePage();
+                return;
+            }
+            
+            document.getElementById('mainPage').style.display = 'none';
+            document.getElementById('maintenancePage').style.display = 'none';
+            document.getElementById(pageId).style.display = 'block';
+        }
+        
+        function authenticateAdmin() {
+            const codeInput = document.getElementById('authCode');
+            const code = codeInput.value;
+            
+            if (code !== ADMIN_CODE) {
+                alert('❌ Неверный код доступа!');
+                return;
+            }
+            
+            isAdminAuthenticated = true;
+            document.getElementById('controlPanel').style.display = 'block';
+            alert('✅ Доступ к панели управления предоставлен!');
+            codeInput.value = '';
+        }
+        
+        function toggleSiteStatus(enable) {
+            if (!isAdminAuthenticated) {
+                alert('❌ Требуется авторизация!');
+                return;
+            }
+            
+            siteActive = enable;
+            
+            const statusIndicator = document.getElementById('statusIndicator');
+            if (enable) {
+                statusIndicator.className = 'status-indicator status-active';
+                statusIndicator.textContent = 'Статус: Сайт активен';
+                alert('✅ Сайт успешно включен!');
+            } else {
+                statusIndicator.className = 'status-indicator status-inactive';
+                statusIndicator.textContent = 'Статус: Сайт отключен';
+                alert('⚠️ Сайт успешно отключен!');
+                // Show maintenance page immediately
+                showMaintenancePage();
+            }
+        }
+        
+        // Initialize status indicator
+        document.getElementById('statusIndicator').textContent = 'Статус: Сайт активен';
+    </script>
+</body>
+</html>
+```
